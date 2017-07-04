@@ -1,3 +1,9 @@
+# Microsoft Bookings API Samples
+
+This project contains a set of samples that demonstrate how to work with the Microsoft Bookings API
+to manage Bookings data in Office 365.
+
+To get started, see the [Microsoft Bookings API](docs/README.md) documentation.  
 
 # Contributing
 
