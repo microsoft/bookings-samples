@@ -2,6 +2,7 @@
 The [Microsoft Bookings API][API] is an [ODATA][] service which allows [Office 365 Business Premium][O365]
 subscribers to manage their [Bookings][] data.
 
+NOTE: The Microsoft Bookings API and its samples are currently in early preview; expect changes.
 
 ## Getting Started
 In order to use the [Bookings API][API] you will need:

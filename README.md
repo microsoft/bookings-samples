@@ -5,6 +5,8 @@ to manage Bookings data in Office 365.
 
 To get started, see the [Microsoft Bookings API](docs/README.md) documentation.  
 
+NOTE: The Microsoft Bookings API and its samples are currently in early preview; expect changes.
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
