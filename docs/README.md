@@ -24,7 +24,7 @@ The application must require access to the [Bookings API][API], by including the
 ```json
 {
     "resourceAppId": "a6f98bd3-1059-4225-8f94-fce712c45742",
-    "resourceAccess": [{ "id": "e859af95-b7e5-4e0c-aa65-829dd1c3a60f", "type": "Scope" }]
+    "resourceAccess": [{ "id": "994019ca-1a02-4fd8-9fd6-987c7c09c426", "type": "Scope" }]
 }
 ```
 **The plan is to make this available thru the normal Azure Portal UI, so one is not required to edit manifests manually.*
