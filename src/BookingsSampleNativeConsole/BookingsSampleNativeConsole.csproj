@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="InitializeTenant.ps1" />
     <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
