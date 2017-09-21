@@ -10,7 +10,7 @@ In order to use the [Bookings API][API] you will need:
   *You can create a trial tenant by going to [products.office.com][Bookings], click **Buy now with Office 365** and select **Free Trial**.*
 
 * **You'll need to register client applications in [Azure Active Directory][AAD] and request permissions to call the [Bookings API][API].**  
-  *See [this sample](https://github.com/Microsoft/bookings-samples/blob/master/src/BookingsSampleNativeConsole/README.md)
+  *See [this sample](https://github.com/Microsoft/bookings-samples/blob/master/src/BookingsSampleNativeConsole/README.MD)
    for additional instructions*
 
 * **Clone the [bookings-samples][Samples] repository
