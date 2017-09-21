@@ -15,10 +15,22 @@ so the application will require access to the Bookings API*:
 ```json
 {
     "resourceAppId": "a6f98bd3-1059-4225-8f94-fce712c45742",
-    "resourceAccess": [{ "id": "e859af95-b7e5-4e0c-aa65-829dd1c3a60f", "type": "Scope" }]
+    "resourceAccess": [{ "id": "994019ca-1a02-4fd8-9fd6-987c7c09c426", "type": "Scope" }]
 }
 ```
 **The plan is to make this available thru the normal Azure Portal UI, so one is not required to edit manifests manually.*
+
+## Consenting to use Bookings API
+
+Before you can use the Bookings API in your tenant with your own application ID you'll need to consent to its usage.
+You can use the `InitializeTenant.ps1` PowerShell script in this sample to do this.
+
+This will create the necessary service principal in your AzureAD tenant and you'll be
+able to see it in the Azure Portal under Active Directory->Enterprise Applications->Bookings ODATA API.
+
+Failing to do this will result in authentication errors that read like this:
+*AADSTS65005: The app needs access to a service ("https://microsoft.onmicrosoft.com/bookingsodataapi") that your organization "\<guid>" has not subscribed to or enabled*
+
 
 See also:
 [Authentication Scenarios: Native Application to Web API](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-authentication-scenarios#native-application-to-web-api)

@@ -87,6 +87,8 @@ namespace Microsoft.Bookings.Client
                 throw new ArgumentException("BaseUri must end with '/'");
             }
 
+            this.BuildingRequest += (s, e) => e.Headers.Add("client-request-id", Guid.NewGuid().ToString());
+
             this.SendingRequest2 += (s, e) =>
                 {
                     var requestMessage = e.RequestMessage as HttpWebRequestMessage;
