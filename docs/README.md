@@ -187,6 +187,68 @@ Authorization: Bearer <the access token obtained from AAD>
 
 The pattern is similar for all nested entity sets.
 
+## Permission Scopes
+The API currently supports the following four permission scopes:
+
+| Id                                   | Role                            | Description                                                                                |
+|--------------------------------------|:--------------------------------|--------------------------------------------------------------------------------------------|
+| 3fa01074-63ac-4e14-9847-2f61e55eb130 | Bookings.Read.All               | Read Bookings appointments, businesses, customers, services and staff                      |
+| fbe314ff-3c42-48b4-8698-634edfa0e310 | Bookings.ReadWrite.Appointments | Read and write Bookings appointments and customers and read businesses, services and staff |
+| 64745dc5-03fc-45d7-9afd-13bfed754231 | Bookings.ReadWrite.All          | Read and write Bookings appointments, businesses, customers, services and staff            |
+| 994019ca-1a02-4fd8-9fd6-987c7c09c426 | Bookings.Manage                 | Read, write and manage Bookings appointments, businesses, customers, services and staff    |
+
+* `Bookings.Read.All` is intended for read-only applications.  
+   *Typical target user is the customer of a booking business.*
+
+* `Bookings.ReadWrite.Appointments` is intended for scheduling applications, which need to manipulate appointments and customers, but do not change the fundamental information about the booking business or its services and staff members.  
+   *Typical target user would be the customer of a booking business.*
+
+* `Bookings.ReadWrite.All` is intended for management applications that manipulate existing businesses, including management of their services and staff members, but are not allowed to create, delete or change the published status of a booking business.  
+   *Typical target user would be the support staff of an organization.*
+
+* `Bookings.Manage` is intended for a full management experience.  
+   *Typical target user would be the administrators of an organization.*
+
+Permissions for individual operations are listed below:
+
+|            Verb | Noun        |Bookings.Read.All|Bookings.ReadWrite.Appointments|Bookings.ReadWrite.All|Bookings.Manage|
+|----------------:|:------------|:---------------:|:-----------------------------:|:--------------------:|:-------------:|
+|             Get | Appointment |        *        |               *               |           *          |       *       |
+| GetCalendarView | Appointment |        *        |               *               |           *          |       *       |
+|        GetCount | Appointment |        *        |               *               |           *          |       *       |
+|         GetList | Appointment |        *        |               *               |           *          |       *       |
+|             Get | Business    |        *        |               *               |           *          |       *       |
+|        GetCount | Business    |        *        |               *               |           *          |       *       |
+|         GetList | Business    |        *        |               *               |           *          |       *       |
+|             Get | Customer    |        *        |               *               |           *          |       *       |
+|        GetCount | Customer    |        *        |               *               |           *          |       *       |
+|         GetList | Customer    |        *        |               *               |           *          |       *       |
+|             Get | Service     |        *        |               *               |           *          |       *       |
+|        GetCount | Service     |        *        |               *               |           *          |       *       |
+|         GetList | Service     |        *        |               *               |           *          |       *       |
+|             Get | StaffMember |        *        |               *               |           *          |       *       |
+|        GetCount | StaffMember |        *        |               *               |           *          |       *       |
+|         GetList | StaffMember |        *        |               *               |           *          |       *       |
+|          Cancel | Appointment |                 |               *               |           *          |       *       |
+|          Delete | Appointment |                 |               *               |           *          |       *       |
+|           Patch | Appointment |                 |               *               |           *          |       *       |
+|            Post | Appointment |                 |               *               |           *          |       *       |
+|          Delete | Customer    |                 |               *               |           *          |       *       |
+|           Patch | Customer    |                 |               *               |           *          |       *       |
+|            Post | Customer    |                 |               *               |           *          |       *       |
+|           Patch | Business    |                 |                               |           *          |       *       |
+|          Delete | Service     |                 |                               |           *          |       *       |
+|           Patch | Service     |                 |                               |           *          |       *       |
+|            Post | Service     |                 |                               |           *          |       *       |
+|          Delete | StaffMember |                 |                               |           *          |       *       |
+|           Patch | StaffMember |                 |                               |           *          |       *       |
+|            Post | StaffMember |                 |                               |           *          |       *       |
+|          Delete | Business    |                 |                               |                      |       *       |
+|            Post | Business    |                 |                               |                      |       *       |
+|         Publish | Business    |                 |                               |                      |       *       |
+|       Unpublish | Business    |                 |                               |                      |       *       |
+
+
 See also:
 * [ODATA Documentation][ODATA]
 * [Microsoft ODATA Stack][Client]
