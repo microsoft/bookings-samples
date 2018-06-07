@@ -1,3 +1,8 @@
+# Microsoft Bookings API in Microsoft Graph
+
+> Microsoft Bookings API is now available in the Microsoft Graph.  
+> See the [Graph documentation](https://developer.microsoft.com/en-us/graph/docs/concepts/booking-concept-overview) for how to use this API with Graph.
+
 # Microsoft Bookings API Samples
 
 This project contains a set of samples that demonstrate how to work with the Microsoft Bookings API
