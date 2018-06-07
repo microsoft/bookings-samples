@@ -1,3 +1,9 @@
+# Microsoft Bookings API in Microsoft Graph
+
+> Microsoft Bookings API is now available in the Microsoft Graph.  
+> See the [Graph documentation](https://developer.microsoft.com/en-us/graph/docs/concepts/booking-concept-overview) for how to use this API with Graph.  
+> In particular, use the Graph endpoint, application registration and authentication mechanisms for your application.
+
 # Overview of the Microsoft Bookings API
 The [Microsoft Bookings API][API] is an [ODATA][] service which allows [Office 365 Business Premium][O365]
 subscribers to manage their [Bookings][] data.
