@@ -11,7 +11,7 @@ namespace Microsoft.Bookings.Client
     using System.IO;
     using System.Net;
 
-    using Microsoft.OData.Core;
+    using Microsoft.OData;
 
     /// <summary>
     /// Adapter that implements IODataRequestMessage on top of an HttpWebRequest
