@@ -1,0 +1,98 @@
+﻿@page
+@using System.Web
+@model Bookings.Web.Pages.BookingsModel
+@{
+ <h1>Businesses</h1>
+	foreach (var business in Model.Businesses)
+	{
+	 <p><a asp-page-handler="select" asp-route-id="@HttpUtility.UrlEncode(business.Id)">@business.DisplayName</a></p>
+	}
+}
+
+<h1>Staff</h1>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">#</th>
+   <th scope="col">Display Name</th>
+   <th scope="col">Email Address</th>
+  </tr>
+ </thead>
+	@{
+		if (Model.StaffMembers != null)
+		{
+			int i = 1;
+			foreach (var staff in Model.StaffMembers)
+			{
+		  <tr>
+		   <th scope="row">@(i++)</th>
+		   <td>@staff.DisplayName</td>
+		   <td>@staff.EmailAddress</td>
+		  </tr>
+			}
+		}
+	}
+</table>
+
+<h1>Available Services</h1>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">#</th>
+   <th scope="col">Display Name</th>
+   <th scope="col">Duration</th>
+   <th scope="col">Price</th>
+  </tr>
+ </thead>
+	@{
+		if (Model.AvailableServices != null)
+		{
+			int j = 1;
+			foreach (var service in Model.AvailableServices)
+			{
+		  <tr>
+		   <th scope="row">@(j++)</th>
+		   <td>@service.DisplayName</td>
+		   <td>@service.DefaultDuration</td>
+		   <td>@service.DefaultPrice</td>
+		  </tr>
+			}
+		}
+	}
+</table>
+
+<h1>Scheduled Meetings</h1>
+<table class="table">
+ <thead>
+  <tr>
+   <th scope="col">#</th>
+   <th scope="col">Service Name</th>
+   <th scope="col">Date</th>
+   <th scope="col">Staff IDs</th>
+   <th scope="col">Customer ID</th>
+   <th scope="col">Customer Name</th>
+   <th scope="col">Customer Email</th>
+   <th scope="col">Duration</th>
+  </tr>
+ </thead>
+	@{
+		if (Model.Appointments != null)
+		{
+			int k = 1;
+			foreach (var appointment in Model.Appointments)
+			{
+		  <tr>
+		   <th scope="row">@(k++)</th>
+		   <td>@appointment.ServiceName</td>
+		   <td>@appointment.Start.DateTime</td>
+		   <td>@String.Join(',', appointment.StaffMemberIds.Select(i => i.ToString()))</td>
+		   <td>@appointment.CustomerId</td>
+		   <td>@appointment.CustomerName</td>
+		   <td>@appointment.CustomerEmailAddress</td>
+		   <td>@appointment.Duration</td>
+		  </tr>
+
+			}
+		}
+	}
+</table>
