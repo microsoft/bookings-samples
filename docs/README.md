@@ -29,35 +29,49 @@ The access token used with the API must contain the identity of an Office 365 us
 An example for obtaining a token in a native C# application using [Active Directory Authentication Libraries (ADAL)][adal] goes like this:
 
 ```csharp
-var authenticationContext = new AuthenticationContext("https://login.microsoftonline.com/common/");
+  var clientApplication = PublicClientApplicationBuilder.Create(clientApplicationAppId)
+  .WithAuthority(AadAuthorityAudience.AzureAdMyOrg)
+  .WithTenantId(tenantId)
+  .Build();
 
-var authenticationResult = await authenticationContext.AcquireTokenAsync(
-  "https://graph.microsoft.com/",
-  clientApplication_ClientId,
-  clientApplication_RedirectUri,
-  new PlatformParameters(PromptBehavior.RefreshSession));
+  Console.Write("Username:    ");
+  string username = Console.ReadLine();
+  if (string.IsNullOrEmpty(username))
+  {
+      Console.WriteLine("Update Sample to include your username");
+      return;
+  }
 
-// The results of this call are sent as the Authorization header of each HTTPS request to Graph.
-var authorizationHeader = authenticationResult.CreateAuthorizationHeader();
+  Console.Write("Password:    ");
+  SecureString password = new SecureString();
+  ConsoleKeyInfo keyinfo;
+  do
+  {
+      keyinfo = Console.ReadKey(true);
+      if (keyinfo.Key == ConsoleKey.Enter) break;
+      password.AppendChar(keyinfo.KeyChar);
+  } while (keyinfo.Key != ConsoleKey.Enter);
+
+  if (password.Length == 0)
+  {
+      Console.WriteLine("Password needs to be provided for the sample to work");
+      return;
+  }
+
+  var authenticationResult = clientApplication.AcquireTokenByUsernamePassword(
+                      new[] { "Bookings.Read.All" },
+                      username, password).ExecuteAsync().Result;
 ```
 
 ## Client Libraries
 
-.Net applications can use ODATA v4 client-side proxy classes, such as the ones
+.Net applications can then use ODATA v4 client-side proxy classes, such as the ones
 provided by the [Microsoft ODATA Stack][client].
 
 The [bookings-samples][samples] repository contains such a generated client library, with just the types needed to access Bookings.
 With it, a C# application can initialize a `GraphService` with code like this:
 
 ```csharp
-var authenticationContext = new AuthenticationContext(GraphService.DefaultAadInstance, TokenCache.DefaultShared);
-
-var authenticationResult = await authenticationContext.AcquireTokenAsync(
-    GraphService.ResourceId,
-    clientApplicationAppId,
-    clientApplicationRedirectUri,
-    new PlatformParameters(PromptBehavior.RefreshSession)).Result;
-
 var graphService = new GraphService(
     GraphService.ServiceRoot,
     () => authenticationResult.CreateAuthorizationHeader());
